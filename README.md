@@ -1,2 +1,4 @@
 # Lomb-Scargle-code
-Plots Lomb-Scargle powers of data obtained from ERA5 satellite
+Plots Lomb-Scargle powers of data obtained from ERA5 atmospheric reanalysis
+The code's first function converts the raw data obtained from satellites, which are stored in .h5 files, into a Pandas dataframe. It then selects the ranges of data (in the code, altitude, but it can be any variable) for which the analysis is intended. Then, the frequency and power are determined using the Lomb-Scargle periodogram, as well as the trend that follows from polynomial interpolation, performed on the logarithms of the extracted values. Finally, the plots of Frequency vs. Power are plotted, along with their best fit line. This is done to observe the behaviour of the variables on small scales, with the horizontal scale ranging for only two days frequency.
+The second function also determines the power and frequency, but without the logarithms, which allows to visualize the scales from a larger perspective, and actually inspect which frequency values hold the greatest power.
