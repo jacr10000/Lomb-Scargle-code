@@ -23,8 +23,9 @@ def LS1(file_path,category1,title='Lomb-Scargle Power Spectral Density'):
     cat2 = cat1.get(category1)
     df = pd.DataFrame(np.array(cat2.get('data')))
     df = df.transpose()
-    df.sort_index(axis=0, ascending=False)
-    
+    df = df.sort_index(axis=0, ascending=False)
+
+    #Select altitudes based on their dataframe positions and use means for interpolation
     alt20 = df.iloc[:131]
     alt20 = alt20.mean()
     alt40 = df.iloc[131:264]
@@ -33,7 +34,8 @@ def LS1(file_path,category1,title='Lomb-Scargle Power Spectral Density'):
     alt60 = alt60.mean()
     alt75 = df.iloc[398:]
     alt75 = alt75.mean()
-    
+
+    #Calculate Lomb-Scargle periodogram for each height
     freq20, power20 = LombScargle(alt20.keys(), alt20, normalization='psd').autopower()
     freq40, power40 = LombScargle(alt40.keys(), alt40, normalization='psd').autopower()
     freq60, power60 = LombScargle(alt60.keys(), alt60, normalization='psd').autopower()
